@@ -1,0 +1,36 @@
+{% extends 'main.html'%}
+{% block crud_container %}
+    {% if user %}
+        <article class="card container fluid"> </article>
+        <style>
+            .brd {
+                border: 4px double green; /* Параметры границы */
+                padding: 10px; /* Поля вокруг текста */
+                width: 200px; /* Ширина */
+            }
+        </style>
+        <div class="brd">
+                <h2>
+                    ID: {{user.id}}
+                </h2>
+                <hr size: 3px; width: 175px>
+                <strong>
+                    Name: {{user.username}}
+                    <br>
+                    Age: {{user.age}}
+                </strong>
+        </div>
+    {% else %}
+            <section class="container-fluid">
+                <h2 align="center"> Users </h2>
+                <br>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% for user in users %}
+                            <li class="list-group-item"> {{user.id}}. <a href="/user/{{user.id}}"> {{user.username}} </a> </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+    {% endif %}
+{% endblock %}
